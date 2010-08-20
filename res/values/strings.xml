@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">GPS Ant!</string>
+    <string name="app_name">GPS Ant</string>
+<string name="LabelAllowed">Allowed:</string>
+<string name="ValueAllowed">y/n</string>
+<string name="LabelActive">Active:</string>
+<string name="ValueActive">y/n</string>
+<string name="LabelSatsSeen">Satellites Seen:</string>
+<string name="ValueSatsSeen">#</string>
+<string name="LabelSatsLocked">Satellites Locked:</string>
+<string name="ValueSatsLocked">#</string>
+<string name="LabelLatitude">Latitude:</string>
+<string name="ValueLatitude">-----</string>
+<string name="LabelLongitude">Longitude:</string>
+<string name="ValueLongitude">-----</string>
+<string name="LabelAltitude">Altitude:</string>
+<string name="ValueAltitude">-----</string>
+<string name="LabelAccuracy">Accuracy:</string>
+<string name="ValueAccuracy">-----</string>
+<string name="LabelProvider">Provider:</string>
+<string name="ValueProvider">-----</string>
+<string name="LabelSpeed">Speed:</string>
+<string name="ValueSpeed">-----</string>
+<string name="LabelBearing">Bearing:</string>
+<string name="ValueBearing">-----</string>
+<string name="DefaultActive">y/n</string>
+<string name="DefaultAllowed">y/n</string>
+<string name="DefaultProvider">-----</string>
+<string name="DefaultSatsSeen">#</string>
+<string name="DefaultSatsLocked">#</string>
+<string name="DefaultLatitude">-----</string>
+<string name="DefaultLongitude">-----</string>
+<string name="DefaultAltitude">-----</string>
+<string name="DefaultSpeed">-----</string>
+<string name="DefaultBearing">-----</string>
+<string name="DefaultAccuracy">-----</string>
+</resources>
