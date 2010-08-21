@@ -11,7 +11,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.text.DateFormat;
 
-public class GPSStatus extends Activity implements LocationListener {
+public class GPSDisplay extends Activity implements LocationListener {
 	boolean GPSAllowed = false;
 	boolean GPSActive = false;
 	
