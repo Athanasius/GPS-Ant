@@ -10,7 +10,6 @@ import android.location.LocationProvider;
 import java.util.Calendar;
 import java.util.Date;
 import java.text.DateFormat;
-//import android.location.GpsStatus;
 
 public class GPSStatus extends Activity implements LocationListener {
 	boolean GPSAllowed = false;
@@ -26,6 +25,7 @@ public class GPSStatus extends Activity implements LocationListener {
         setContentView(R.layout.main);
         
     }
+    
     
     @Override
     protected void onResume() {
