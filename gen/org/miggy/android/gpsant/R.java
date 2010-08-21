@@ -25,6 +25,7 @@ public final class R {
         public static final int LabelSatsLocked=0x7f05000e;
         public static final int LabelSatsSeen=0x7f05000b;
         public static final int LabelSpeed=0x7f05001a;
+        public static final int LabelTimestamp=0x7f050023;
         public static final int RowAccuracy=0x7f05001f;
         public static final int RowActive=0x7f050004;
         public static final int RowAllowed=0x7f050001;
@@ -36,6 +37,7 @@ public final class R {
         public static final int RowSatsLocked=0x7f05000d;
         public static final int RowSatsSeen=0x7f05000a;
         public static final int RowSpeed=0x7f050019;
+        public static final int RowTimestamp=0x7f050022;
         public static final int TableLayout01=0x7f050000;
         public static final int ValueAccuracy=0x7f050021;
         public static final int ValueActive=0x7f050006;
@@ -48,6 +50,7 @@ public final class R {
         public static final int ValueSatsLocked=0x7f05000f;
         public static final int ValueSatsSeen=0x7f05000c;
         public static final int ValueSpeed=0x7f05001b;
+        public static final int ValueTimestamp=0x7f050024;
     }
     public static final class layout {
         public static final int main=0x7f030000;
@@ -64,6 +67,7 @@ public final class R {
         public static final int DefaultSatsLocked=0x7f04001c;
         public static final int DefaultSatsSeen=0x7f04001b;
         public static final int DefaultSpeed=0x7f040020;
+        public static final int DefaultTimestamp=0x7f040025;
         public static final int LabelAccuracy=0x7f040010;
         public static final int LabelActive=0x7f040004;
         public static final int LabelAllowed=0x7f040002;
@@ -75,6 +79,7 @@ public final class R {
         public static final int LabelSatsLocked=0x7f040008;
         public static final int LabelSatsSeen=0x7f040006;
         public static final int LabelSpeed=0x7f040014;
+        public static final int LabelTimestamp=0x7f040023;
         public static final int ValueAccuracy=0x7f040011;
         public static final int ValueActive=0x7f040005;
         public static final int ValueAllowed=0x7f040003;
@@ -86,6 +91,7 @@ public final class R {
         public static final int ValueSatsLocked=0x7f040009;
         public static final int ValueSatsSeen=0x7f040007;
         public static final int ValueSpeed=0x7f040015;
+        public static final int ValueTimestamp=0x7f040024;
         public static final int app_name=0x7f040001;
         public static final int hello=0x7f040000;
     }

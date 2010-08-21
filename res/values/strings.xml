@@ -35,4 +35,7 @@
 <string name="DefaultSpeed">-----</string>
 <string name="DefaultBearing">-----</string>
 <string name="DefaultAccuracy">-----</string>
+<string name="LabelTimestamp">Time:</string>
+<string name="ValueTimestamp">--:--:--</string>
+<string name="DefaultTimestamp">--:--:--</string>
 </resources>

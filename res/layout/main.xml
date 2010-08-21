@@ -29,16 +29,16 @@
 			android:text="@string/ValueActive"
 			android:id="@+id/ValueActive"
 			android:layout_gravity="right"
-			android:padding="3dip">
+			android:padding="3dip" android:gravity="right">
 		</TextView>
 	</TableRow>
 	
 	<TableRow android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/RowProvider"><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/LabelProvider" android:text="@string/LabelProvider" android:padding="3dip"></TextView>
-<TextView android:layout_width="wrap_content" android:text="@string/ValueProvider" android:padding="3dip" android:layout_gravity="right" android:id="@+id/ValueProvider"></TextView>
+<TextView android:text="@string/ValueProvider" android:padding="3dip" android:layout_gravity="right" android:id="@+id/ValueProvider" android:gravity="right" android:minEms="10"></TextView>
 </TableRow><TableRow android:id="@+id/RowSatsSeen">
 		<TextView android:text="@string/LabelSatsSeen" android:id="@+id/LabelSatsSeen" android:padding="3dip">
 		</TextView>
-		<TextView android:text="@string/ValueSatsSeen" android:id="@+id/ValueSatsSeen" android:layout_gravity="right" android:padding="3dip">
+		<TextView android:text="@string/ValueSatsSeen" android:id="@+id/ValueSatsSeen" android:layout_gravity="right" android:padding="3dip" android:minEms="10" android:gravity="right">
 		</TextView>
 	
 
@@ -54,7 +54,7 @@
 			android:text="@string/ValueSatsLocked"
 			android:id="@+id/ValueSatsLocked"
 			android:layout_gravity="right"
-			android:padding="3dip">
+			android:padding="3dip" android:gravity="right" android:minEms="10">
 		</TextView>
 	</TableRow>
 	<TableRow
@@ -68,7 +68,7 @@
 			android:text="@string/ValueLatitude"
 			android:id="@+id/ValueLatitude"
 			android:layout_gravity="right"
-			android:padding="3dip">
+			android:padding="3dip" android:minEms="10" android:gravity="right">
 		</TextView>
 	</TableRow>
 	<TableRow
@@ -82,7 +82,7 @@
 			android:text="@string/ValueLongitude"
 			android:id="@+id/ValueLongitude"
 			android:layout_gravity="right"
-			android:padding="3dip">
+			android:padding="3dip" android:maxEms="10" android:gravity="right">
 		</TextView>
 	</TableRow>
 	<TableRow
@@ -96,20 +96,23 @@
 			android:text="@string/ValueAltitude"
 			android:id="@+id/ValueAltitude"
 			android:layout_gravity="right"
-			android:padding="3dip">
+			android:padding="3dip" android:gravity="right" android:minEms="10">
 		</TextView>
 	</TableRow>
 	<TableRow android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/RowSpeed"><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/LabelSpeed" android:id="@+id/LabelSpeed" android:padding="3dip"></TextView>
-<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/ValueSpeed" android:layout_gravity="right" android:id="@+id/ValueSpeed" android:padding="3dip"></TextView>
+<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/ValueSpeed" android:layout_gravity="right" android:id="@+id/ValueSpeed" android:padding="3dip" android:gravity="right" android:minEms="10"></TextView>
 </TableRow>
 
 
 <TableRow android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/RowBearing"><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/LabelBearing" android:text="@string/LabelBearing" android:padding="3dip"></TextView>
-<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/ValueBearing" android:text="@string/ValueBearing" android:layout_gravity="right" android:padding="3dip"></TextView>
+<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/ValueBearing" android:text="@string/ValueBearing" android:layout_gravity="right" android:padding="3dip" android:gravity="right" android:minEms="10"></TextView>
 </TableRow><TableRow android:id="@+id/RowAccuracy">
 		<TextView android:text="@string/LabelAccuracy" android:id="@+id/LabelAccuracy" android:padding="3dip">
 		</TextView>
-		<TextView android:text="@string/ValueAccuracy" android:id="@+id/ValueAccuracy" android:layout_gravity="right" android:padding="3dip">
+		<TextView android:text="@string/ValueAccuracy" android:id="@+id/ValueAccuracy" android:layout_gravity="right" android:padding="3dip" android:gravity="right" android:minEms="10">
 		</TextView>
 	</TableRow>
+<TableRow android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/RowTimestamp"><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/LabelTimestamp" android:text="@string/LabelTimestamp" android:padding="3dip"></TextView>
+<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/ValueTimestamp" android:text="@string/ValueTimestamp" android:layout_gravity="right" android:padding="3dip" android:gravity="right" android:minEms="10"></TextView>
+</TableRow>
 </TableLayout>
