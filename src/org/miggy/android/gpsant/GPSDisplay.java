@@ -1,6 +1,7 @@
 package org.miggy.android.gpsant;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -64,7 +65,7 @@ public class GPSDisplay extends Activity implements LocationListener {
 		} else {
 			((TextView) findViewById(R.id.ValueAllowed)).setText("N");
 		}
-		
+				
 		// Hook in our GpsStatus.Listener
 		locationManager.addGpsStatusListener(gpsStatus);
 
@@ -155,6 +156,12 @@ public class GPSDisplay extends Activity implements LocationListener {
     	
     	switch (item.getItemId()) {
     	case R.id.About:
+    		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    		builder.setTitle("About");
+    		builder.setMessage(getString(R.string.AboutText) + " " + getString(R.string.Version));
+    		builder.setCancelable(true);
+    		builder.show();
+    		break;
     	case R.id.Exit:
     		finish();
     		return true;
