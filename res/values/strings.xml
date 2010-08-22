@@ -60,4 +60,5 @@
 <string name="Stopped">Stopped</string>
 <string name="FirstFix">First Fix</string>
 <string name="GotFix">Got Fix</string>
+<string name="OldFix">Old Fix</string>
 </resources>

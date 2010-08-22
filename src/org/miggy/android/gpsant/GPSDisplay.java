@@ -109,6 +109,11 @@ public class GPSDisplay extends Activity implements LocationListener {
 		} else {
 			((TextView) findViewById(R.id.ValueAllowed)).setText(getString(R.string.GPSAllowedDisabled));
 		}
+		// See if there's a stored last position
+		Location last = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+		if (last != null) {
+			updateLocation(last, getString(R.string.OldFix));
+		}
 		updateLastInfo();
 				
 		// Hook in our GpsStatus.Listener
@@ -138,6 +143,10 @@ public class GPSDisplay extends Activity implements LocationListener {
     }
     
     public void onLocationChanged(Location location) {
+    	updateLocation(location, getString(R.string.GotFix));
+    }
+    
+    private void updateLocation(Location location, String status) {
        	((TextView) findViewById(R.id.ValueProvider)).setText(location.getProvider());
     	((TextView) findViewById(R.id.ValueLatitude)).setText(Location.convert(location.getLatitude(), Location.FORMAT_DEGREES));
     	((TextView) findViewById(R.id.ValueLongitude)).setText(Location.convert(location.getLongitude(), Location.FORMAT_DEGREES));
@@ -161,12 +170,12 @@ public class GPSDisplay extends Activity implements LocationListener {
     	} else {
     		((TextView) findViewById(R.id.ValueAccuracy)).setText(getString(R.string.DefaultAccuracy));
     	}
-    	Date now = Calendar.getInstance().getTime();
+    	Date now = new Date(location.getTime());
     	DateFormat df = DateFormat.getTimeInstance();
     	((TextView) findViewById(R.id.ValueTimestamp)).setText(df.format(now));
-    	setActive(getString(R.string.GotFix));
+    	((TextView) findViewById(R.id.ValueActive)).setText(status);
     }
-    
+        
     public void onStatusChanged(String provider, int status, Bundle extras) {
     	if (provider.equals(LocationManager.GPS_PROVIDER)) {
     		switch (status) {
