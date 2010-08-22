@@ -1,117 +1,211 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="fill_parent"
-	android:layout_height="fill_parent" android:stretchColumns="2" android:id="@+id/GPSDisplay">
-	<TableRow
-		android:id="@+id/RowAllowed">
-		<TextView
-			android:text="@string/LabelAllowed"
-			android:id="@+id/LabelAllowed"
-			android:padding="3dip">
-		</TextView>
-		<TextView
-			android:text="@string/ValueAllowed"
-			android:id="@+id/ValueAllowed"
-			android:layout_gravity="right"
-			android:padding="3dip" android:minEms="10" android:gravity="right">
-		</TextView>
-	</TableRow>
-	<TableRow
-		android:id="@+id/RowActive">
-		<TextView
-			android:text="@string/LabelActive"
-			android:id="@+id/LabelActive"
-			android:padding="3dip">
-		</TextView>
-		<TextView
-			android:text="@string/ValueActive"
-			android:id="@+id/ValueActive"
-			android:layout_gravity="right"
-			android:padding="3dip" android:gravity="right">
-		</TextView>
-	</TableRow>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/GPSStatusLayout"
+  android:layout_height="fill_parent" android:layout_width="fill_parent" android:orientation="vertical">
+
+	<TextView
+		android:id="@+id/HeaderFix"
+		android:text="@string/HeaderFix"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:textStyle="bold" android:gravity="center">
+	</TextView>
+  
+	<TableLayout
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:stretchColumns="1" android:id="@+id/GPSDisplayFix">
 	
-	<TableRow android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/RowProvider"><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/LabelProvider" android:text="@string/LabelProvider" android:padding="3dip"></TextView>
-<TextView android:text="@string/ValueProvider" android:padding="3dip" android:layout_gravity="right" android:id="@+id/ValueProvider" android:gravity="right" android:minEms="10"></TextView>
-</TableRow><TableRow android:id="@+id/RowSatsSeen">
-		<TextView android:text="@string/LabelSatsSeen" android:id="@+id/LabelSatsSeen" android:padding="3dip">
-		</TextView>
-		<TextView android:text="@string/ValueSatsSeen" android:id="@+id/ValueSatsSeen" android:layout_gravity="right" android:padding="3dip" android:minEms="10" android:gravity="right">
-		</TextView>
+		<TableRow android:id="@+id/RowTimestamp">
+			<TextView
+				android:id="@+id/LabelTimestamp"
+				android:text="@string/LabelTimestamp"
+				android:padding="3dip">
+			</TextView>
+			<TextView
+				android:id="@+id/ValueTimestamp"
+				android:text="@string/ValueTimestamp"
+				android:padding="3dip"
+				android:minEms="10"
+				android:gravity="right">
+			</TextView>
+		</TableRow>
 	
+		<TableRow android:id="@+id/RowLatitude">
+			<TextView
+				android:id="@+id/LabelLatitude"
+				android:text="@string/LabelLatitude"
+				android:padding="3dip">
+			</TextView>
+			<TextView
+				android:id="@+id/ValueLatitude"
+				android:text="@string/ValueLatitude"
+				android:padding="3dip"
+				android:minEms="10"
+				android:gravity="right">
+			</TextView>
+		</TableRow>
 
+		<TableRow android:id="@+id/RowLongitude">
+			<TextView
+				android:id="@+id/LabelLongitude"
+				android:text="@string/LabelLongitude"
+				android:padding="3dip">
+			</TextView>
+			<TextView
+				android:id="@+id/ValueLongitude"
+				android:text="@string/ValueLongitude"
+				android:padding="3dip"
+				android:minEms="10"
+				android:gravity="right">
+			</TextView>
+		</TableRow>
 
-</TableRow><TableRow
-		android:id="@+id/RowSatsLocked">
-		<TextView
-			android:text="@string/LabelSatsLocked"
-			android:id="@+id/LabelSatsLocked"
-			android:padding="3dip">
-		</TextView>
-		<TextView
-			android:text="@string/ValueSatsLocked"
-			android:id="@+id/ValueSatsLocked"
-			android:layout_gravity="right"
-			android:padding="3dip" android:gravity="right" android:minEms="10">
-		</TextView>
-	</TableRow>
-	<TableRow
-		android:id="@+id/RowLatitude">
-		<TextView
-			android:text="@string/LabelLatitude"
-			android:id="@+id/LabelLatitude"
-			android:padding="3dip">
-		</TextView>
-		<TextView
-			android:text="@string/ValueLatitude"
-			android:id="@+id/ValueLatitude"
-			android:layout_gravity="right"
-			android:padding="3dip" android:minEms="10" android:gravity="right">
-		</TextView>
-	</TableRow>
-	<TableRow
-		android:id="@+id/RowLongitude">
-		<TextView
-			android:text="@string/LabelLongitude"
-			android:id="@+id/LabelLongitude"
-			android:padding="3dip">
-		</TextView>
-		<TextView
-			android:text="@string/ValueLongitude"
-			android:id="@+id/ValueLongitude"
-			android:layout_gravity="right"
-			android:padding="3dip" android:maxEms="10" android:gravity="right">
-		</TextView>
-	</TableRow>
-	<TableRow
-		android:id="@+id/RowAltitude">
-		<TextView
-			android:text="@string/LabelAltitude"
-			android:id="@+id/LabelAltitude"
-			android:padding="3dip">
-		</TextView>
-		<TextView
-			android:text="@string/ValueAltitude"
-			android:id="@+id/ValueAltitude"
-			android:layout_gravity="right"
-			android:padding="3dip" android:gravity="right" android:minEms="10">
-		</TextView>
-	</TableRow>
-	<TableRow android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/RowSpeed"><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/LabelSpeed" android:id="@+id/LabelSpeed" android:padding="3dip"></TextView>
-<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/ValueSpeed" android:layout_gravity="right" android:id="@+id/ValueSpeed" android:padding="3dip" android:gravity="right" android:minEms="10"></TextView>
-</TableRow>
+		<TableRow android:id="@+id/RowAltitude">
+			<TextView
+				android:id="@+id/LabelAltitude"
+				android:text="@string/LabelAltitude"
+				android:padding="3dip">
+			</TextView>
+			<TextView
+				android:id="@+id/ValueAltitude"
+				android:text="@string/ValueAltitude"
+				android:padding="3dip"
+				android:minEms="10"
+				android:gravity="right">
+			</TextView>
+		</TableRow>
 
+		<TableRow android:id="@+id/RowSpeed">
+			<TextView
+				android:id="@+id/LabelSpeed"
+				android:text="@string/LabelSpeed"
+				android:padding="3dip">
+			</TextView>
+			<TextView
+				android:id="@+id/ValueSpeed"
+				android:text="@string/ValueSpeed"
+				android:padding="3dip"
+				android:minEms="10"
+				android:gravity="right">
+			</TextView>
+		</TableRow>
 
-<TableRow android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/RowBearing"><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/LabelBearing" android:text="@string/LabelBearing" android:padding="3dip"></TextView>
-<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/ValueBearing" android:text="@string/ValueBearing" android:layout_gravity="right" android:padding="3dip" android:gravity="right" android:minEms="10"></TextView>
-</TableRow><TableRow android:id="@+id/RowAccuracy">
-		<TextView android:text="@string/LabelAccuracy" android:id="@+id/LabelAccuracy" android:padding="3dip">
-		</TextView>
-		<TextView android:text="@string/ValueAccuracy" android:id="@+id/ValueAccuracy" android:layout_gravity="right" android:padding="3dip" android:gravity="right" android:minEms="10">
-		</TextView>
-	</TableRow>
-<TableRow android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/RowTimestamp"><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/LabelTimestamp" android:text="@string/LabelTimestamp" android:padding="3dip"></TextView>
-<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/ValueTimestamp" android:text="@string/ValueTimestamp" android:layout_gravity="right" android:padding="3dip" android:gravity="right" android:minEms="10"></TextView>
-</TableRow>
-</TableLayout>
+		<TableRow android:id="@+id/RowBearing">
+			<TextView
+				android:id="@+id/LabelBearing"
+				android:text="@string/LabelBearing"
+				android:padding="3dip">
+			</TextView>
+			<TextView
+				android:id="@+id/ValueBearing"
+				android:text="@string/ValueBearing"
+				android:padding="3dip"
+				android:minEms="10"
+				android:gravity="right">
+			</TextView>
+		</TableRow>
+		
+		<TableRow android:id="@+id/RowAccuracy">
+			<TextView
+				android:id="@+id/LabelAccuracy"
+				android:text="@string/LabelAccuracy"
+				android:padding="3dip">
+			</TextView>
+			<TextView
+				android:id="@+id/ValueAccuracy"
+				android:text="@string/ValueAccuracy"
+				android:padding="3dip"
+				android:minEms="10"
+				android:gravity="right">
+			</TextView>
+		</TableRow>
+
+	</TableLayout>
+
+	<TextView
+		android:id="@+id/HeaderInfo"
+		android:text="@string/HeaderInfo"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:textStyle="bold" android:gravity="center" android:paddingTop="10dip">
+	</TextView>
+
+	<TableLayout
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:stretchColumns="1" android:id="@+id/GPSDisplayInfo">
+
+		<TableRow android:id="@+id/RowAllowed">
+			<TextView
+				android:text="@string/LabelAllowed"
+				android:id="@+id/LabelAllowed"
+				android:padding="3dip">
+			</TextView>
+			<TextView
+				android:text="@string/ValueAllowed"
+				android:id="@+id/ValueAllowed"
+				android:padding="3dip"
+				android:minEms="10"
+				android:gravity="right">
+			</TextView>
+		</TableRow>
+
+		<TableRow android:id="@+id/RowActive">
+			<TextView
+				android:text="@string/LabelActive"
+				android:id="@+id/LabelActive"
+				android:padding="3dip">
+			</TextView>
+			<TextView
+				android:text="@string/ValueActive"
+				android:id="@+id/ValueActive"
+				android:padding="3dip"
+				android:minEms="10"
+				android:gravity="right">
+			</TextView>
+		</TableRow>
+	
+		<TableRow android:id="@+id/RowProvider">
+			<TextView
+				android:id="@+id/LabelProvider"
+				android:text="@string/LabelProvider"
+				android:padding="3dip">
+			</TextView>
+			<TextView
+				android:id="@+id/ValueProvider"
+				android:text="@string/ValueProvider"
+				android:padding="3dip"
+				android:minEms="10"
+				android:gravity="right">
+			</TextView>
+		</TableRow>
+
+		<TableRow android:id="@+id/RowSatsSeen">
+			<TextView
+				android:id="@+id/LabelSatsSeen"
+				android:text="@string/LabelSatsSeen"
+				android:padding="3dip">
+			</TextView>
+			<TextView
+				android:id="@+id/ValueSatsSeen"
+				android:text="@string/ValueSatsSeen"
+				android:padding="3dip"
+				android:minEms="10"
+				android:gravity="right">
+			</TextView>
+		</TableRow>
+
+		<TableRow android:id="@+id/RowSatsLocked">
+			<TextView
+				android:id="@+id/LabelSatsLocked"
+				android:text="@string/LabelSatsLocked"
+				android:padding="3dip">
+			</TextView>
+			<TextView
+				android:id="@+id/ValueSatsLocked"
+				android:text="@string/ValueSatsLocked"
+				android:padding="3dip"
+				android:minEms="10"
+				android:gravity="right">
+			</TextView>
+		</TableRow>
+	</TableLayout>
+</LinearLayout>
