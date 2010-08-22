@@ -157,8 +157,8 @@ public class GPSDisplay extends Activity implements LocationListener {
     	switch (item.getItemId()) {
     	case R.id.About:
     		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    		builder.setTitle("About");
-    		builder.setMessage(getString(R.string.AboutText) + " " + getString(R.string.Version));
+    		builder.setTitle(getString(R.string.AboutTitle));
+    		builder.setMessage(getString(R.string.AboutText01) + "\n" + getString(R.string.AboutText02) + "\n" + getString(R.string.AboutText03) + " " + getString(R.string.Version));
     		builder.setCancelable(true);
     		builder.show();
     		break;
