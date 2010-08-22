@@ -40,4 +40,6 @@
 <string name="ValueTimestamp">--:--:--</string>
 <string name="DefaultTimestamp">--:--:--</string>
 <string name="Version">v0.0.3</string>
+<string name="MenuMainAbout">About</string>
+<string name="MenuMainExit">Exit</string>
 </resources>
