@@ -26,6 +26,8 @@ public class GPSDisplay extends Activity implements LocationListener {
 	boolean GPSActive = false;
 	GPSStatus gpsStatus = new GPSStatus(this);
 	LocationManager locationManager = null;
+	long defaultMinTime = 1000L;
+	float defaultMinDistance = 1.0f;
 //////////////////////////////////////////////////////////////////////////////////////////
 	
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -33,21 +35,26 @@ public class GPSDisplay extends Activity implements LocationListener {
 //////////////////////////////////////////////////////////////////////////////////////////
 	public void setSatsSeen(String s) {
 		((TextView) findViewById(R.id.ValueSatsSeen)).setText(s);
+		updateLastInfo();
 	}
 	public void setSatsSeenDefault() {
 		((TextView) findViewById(R.id.ValueSatsSeen)).setText(getString(R.string.DefaultSatsSeen));
+		updateLastInfo();
 	}
 
 	public void setSatsLockedDefault() {
 		((TextView) findViewById(R.id.ValueSatsLocked)).setText(getString(R.string.DefaultSatsLocked));
+		updateLastInfo();
 	}
 
 	public void setSatsLocked(String s) {
 		((TextView) findViewById(R.id.ValueSatsLocked)).setText(s);
+		updateLastInfo();
 	}
 
 	public void setActive(String s) {
 		((TextView) findViewById(R.id.ValueActive)).setText(s);
+		updateLastInfo();
 	}
 //////////////////////////////////////////////////////////////////////////////////////////
 
@@ -70,14 +77,14 @@ public class GPSDisplay extends Activity implements LocationListener {
     protected void onResume() {
      	super.onResume();
    
-     	startGPS();
+     	startGPS(defaultMinTime, defaultMinDistance);
     }
 
     @Override
 	protected void onStart() {
 		super.onStart();
 		
-		startGPS();
+		startGPS(defaultMinTime, defaultMinDistance);
 	}
     
     @Override
@@ -94,14 +101,15 @@ public class GPSDisplay extends Activity implements LocationListener {
     	stopGPS();
     }
     
-    void startGPS() {
-		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000L, 1.0f, this);
+    void startGPS(long minTime, float minDistance) {
+		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, minTime, minDistance, this);
 		GPSAllowed = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
 		if (GPSAllowed) {
 			((TextView) findViewById(R.id.ValueAllowed)).setText(getString(R.string.GPSAllowedEnabled));
 		} else {
 			((TextView) findViewById(R.id.ValueAllowed)).setText(getString(R.string.GPSAllowedDisabled));
 		}
+		updateLastInfo();
 				
 		// Hook in our GpsStatus.Listener
 		locationManager.addGpsStatusListener(gpsStatus);
@@ -110,6 +118,7 @@ public class GPSDisplay extends Activity implements LocationListener {
     void stopGPS() {
     	locationManager.removeGpsStatusListener(gpsStatus);
     	locationManager.removeUpdates(this);
+    	updateLastInfo();
     }
 //////////////////////////////////////////////////////////////////////////////////////////
     
@@ -155,6 +164,7 @@ public class GPSDisplay extends Activity implements LocationListener {
     	Date now = Calendar.getInstance().getTime();
     	DateFormat df = DateFormat.getTimeInstance();
     	((TextView) findViewById(R.id.ValueTimestamp)).setText(df.format(now));
+    	setActive(getString(R.string.GotFix));
     }
     
     public void onStatusChanged(String provider, int status, Bundle extras) {
@@ -162,20 +172,29 @@ public class GPSDisplay extends Activity implements LocationListener {
     		switch (status) {
     		case LocationProvider.OUT_OF_SERVICE:
     			GPSActive = false;
-    			((TextView) findViewById(R.id.ValueActive)).setText("Out of Service");
+    			((TextView) findViewById(R.id.ValueActive)).setText(getString(R.string.OutOfService));
+    			updateLastInfo();
     			break;
     		case LocationProvider.TEMPORARILY_UNAVAILABLE:
     			GPSActive = false;
-    			((TextView) findViewById(R.id.ValueActive)).setText("Temp. Unavail");
+    			((TextView) findViewById(R.id.ValueActive)).setText(getString(R.string.TempUnavail));
     			setSatsSeenDefault();
     			setSatsLockedDefault();
+    			updateLastInfo();
     			break;
     		case LocationProvider.AVAILABLE:
     			GPSActive = true;
-    			((TextView) findViewById(R.id.ValueActive)).setText("Available");
+    			((TextView) findViewById(R.id.ValueActive)).setText(getString(R.string.Available));
+    			updateLastInfo();
     			break;
     		}
     	}
+    }
+    
+    private void updateLastInfo() {
+    	Date now = Calendar.getInstance().getTime();
+    	DateFormat df = DateFormat.getTimeInstance();
+    	((TextView) findViewById(R.id.ValueLastInfo)).setText(df.format(now));
     }
 //////////////////////////////////////////////////////////////////////////////////////////
 
