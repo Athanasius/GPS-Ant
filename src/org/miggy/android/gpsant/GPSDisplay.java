@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.location.Location;
 import android.location.LocationListener;
@@ -156,10 +157,12 @@ public class GPSDisplay extends Activity implements LocationListener {
     	
     	switch (item.getItemId()) {
     	case R.id.About:
+    		View aboutView = getLayoutInflater().inflate(R.layout.about, null, false);
+    		
     		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    		builder.setTitle(getString(R.string.AboutTitle));
-    		builder.setMessage(getString(R.string.AboutText01) + "\n" + getString(R.string.AboutText02) + "\n" + getString(R.string.AboutText03) + " " + getString(R.string.Version));
-    		builder.setCancelable(true);
+    		builder.setTitle(R.string.AboutTitle);
+    		builder.setView(aboutView);
+    		builder.create();
     		builder.show();
     		break;
     	case R.id.Exit:

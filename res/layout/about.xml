@@ -3,7 +3,7 @@
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="wrap_content"
   android:layout_height="wrap_content" android:orientation="vertical" android:id="@+id/AboutDialog">
-<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/AboutText01" android:text="@string/AboutText01"></TextView>
-<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/AboutText02" android:text="@string/AboutText02"></TextView>
-<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/AboutText03" android:text="@string/AboutText03"></TextView>
+<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/AboutText01" android:text="@string/AboutText01" android:textSize="13dip"></TextView>
+<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/AboutText02" android:text="@string/AboutText02" android:textSize="13dip" android:autoLink="all"></TextView>
+<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/AboutText03" android:text="@string/Version"></TextView>
 </LinearLayout>
