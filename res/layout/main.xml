@@ -133,6 +133,21 @@
 		android:layout_width="fill_parent" android:layout_height="wrap_content"
 		android:stretchColumns="1" android:id="@+id/GPSDisplayInfo">
 
+		<TableRow android:id="@+id/RowLastInfo">
+			<TextView
+				android:text="@string/LabelLastInfo"
+				android:id="@+id/LabelLastInfo"
+				android:padding="3dip">
+			</TextView>
+			<TextView
+				android:text="@string/ValueLastInfo"
+				android:id="@+id/ValueLastInfo"
+				android:padding="3dip"
+				android:minEms="10"
+				android:gravity="right">
+			</TextView>
+		</TableRow>
+
 		<TableRow android:id="@+id/RowAllowed">
 			<TextView
 				android:text="@string/LabelAllowed"
@@ -208,4 +223,5 @@
 			</TextView>
 		</TableRow>
 	</TableLayout>
+
 </LinearLayout>
