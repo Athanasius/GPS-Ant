@@ -11,13 +11,27 @@ import java.util.Calendar;
 import java.util.Date;
 import java.text.DateFormat;
 
+import org.miggy.android.gpsant.GPSStatus;
+
 public class GPSDisplay extends Activity implements LocationListener {
 	boolean GPSAllowed = false;
 	boolean GPSActive = false;
-	
+	GPSStatus gpsStatus = new GPSStatus(this);
 	LocationManager locationManager;
 	
-    /** Called when the activity is first created. */
+	public void setSatsSeen(String s) {
+		((TextView) findViewById(R.id.ValueSatsSeen)).setText(s);
+	}
+	
+	public void setSatsLocked(String s) {
+		((TextView) findViewById(R.id.ValueSatsLocked)).setText(s);
+	}
+
+	public void setActive(String s) {
+		((TextView) findViewById(R.id.ValueActive)).setText(s);
+	}
+
+	/** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
     	
@@ -41,6 +55,9 @@ public class GPSDisplay extends Activity implements LocationListener {
 		} else {
 			((TextView) findViewById(R.id.ValueAllowed)).setText("N");
 		}
+		
+		// Hook in our GpsStatus.Listener
+		locationManager.addGpsStatusListener(gpsStatus);
 
     }
             
@@ -96,22 +113,22 @@ public class GPSDisplay extends Activity implements LocationListener {
     		switch (status) {
     		case LocationProvider.OUT_OF_SERVICE:
     			GPSActive = false;
-    			((TextView) findViewById(R.id.ValueActive)).setText(getString(R.string.DefaultActive));
-    			((TextView) findViewById(R.id.ValueSatsSeen)).setText(getString(R.string.DefaultSatsSeen));
-    			((TextView) findViewById(R.id.ValueSatsLocked)).setText(getString(R.string.DefaultSatsLocked));
+    			((TextView) findViewById(R.id.ValueActive)).setText("Out of Service");
+    			//((TextView) findViewById(R.id.ValueSatsSeen)).setText(getString(R.string.DefaultSatsSeen));
+    			//((TextView) findViewById(R.id.ValueSatsLocked)).setText(getString(R.string.DefaultSatsLocked));
     			break;
     		case LocationProvider.TEMPORARILY_UNAVAILABLE:
     			GPSActive = false;
-    			((TextView) findViewById(R.id.ValueActive)).setText("temp");
-    			((TextView) findViewById(R.id.ValueSatsSeen)).setText("temp");
-    			((TextView) findViewById(R.id.ValueSatsLocked)).setText("temp");
+    			((TextView) findViewById(R.id.ValueActive)).setText("Temp. Unavail");
+    			//((TextView) findViewById(R.id.ValueSatsSeen)).setText("temp");
+    			//((TextView) findViewById(R.id.ValueSatsLocked)).setText("temp");
     			break;
     		case LocationProvider.AVAILABLE:
     			GPSActive = true;
-    			((TextView) findViewById(R.id.ValueActive)).setText("Y");
+    			((TextView) findViewById(R.id.ValueActive)).setText("Available");
     			if (extras != null) {
     				if (extras.containsKey("satellites")) {
-    					((TextView) findViewById(R.id.ValueSatsLocked)).setText(extras.get("satellites").toString());
+    					//((TextView) findViewById(R.id.ValueSatsLocked)).setText(extras.get("satellites").toString());
     				}
     			}
     			break;

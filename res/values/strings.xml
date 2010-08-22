@@ -2,6 +2,7 @@
 <resources>
     <string name="hello">GPS Ant!</string>
     <string name="app_name">GPS Ant</string>
+    <string name="gps_status">GPS Ant - Status</string>
 <string name="LabelAllowed">Allowed:</string>
 <string name="ValueAllowed">y/n</string>
 <string name="LabelActive">Active:</string>

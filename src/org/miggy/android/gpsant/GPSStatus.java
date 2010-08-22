@@ -1,31 +1,45 @@
 package org.miggy.android.gpsant;
 
-import android.app.Activity;
-import android.os.Bundle;
 import android.location.GpsStatus;
-// import android.location.GpsStatus.Listener;
+import android.location.GpsSatellite;
 
-public class GPSStatus extends Activity implements GpsStatus.Listener {
+import org.miggy.android.gpsant.GPSDisplay;
 
-    /** Called when the activity is first created. */
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-    	
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
-        
-    }
 
+public class GPSStatus implements GpsStatus.Listener {
+	GPSDisplay myGpsDisplay;
+	GpsStatus myGpsStatus;
+	
+	public GPSStatus() {
+		// TODO Auto-generated constructor stub
+	} GPSStatus(GPSDisplay gpsDisplay) {
+		myGpsDisplay = gpsDisplay;
+	}
+	
 	public void onGpsStatusChanged(int event) {
 		// TODO Auto-generated method stub
 		switch (event) {
 		case GpsStatus.GPS_EVENT_STARTED:
+			myGpsDisplay.setActive("Started");
 			break;
 		case GpsStatus.GPS_EVENT_STOPPED:
+			myGpsDisplay.setActive("Stopped");
 			break;
 		case GpsStatus.GPS_EVENT_FIRST_FIX:
+			myGpsDisplay.setActive("First fix");
 			break;
 		case GpsStatus.GPS_EVENT_SATELLITE_STATUS:
+			myGpsStatus = myGpsDisplay.locationManager.getGpsStatus(myGpsStatus);
+			int seen = 0;
+			int usedInFix = 0;
+			for (GpsSatellite sat : myGpsStatus.getSatellites()) {
+				seen++;
+				if (sat.usedInFix()) {
+					usedInFix++;
+				}
+			}
+			myGpsDisplay.setSatsSeen(String.valueOf(seen));
+			myGpsDisplay.setSatsLocked(String.valueOf(usedInFix));
 			break;
 		}
 	}
