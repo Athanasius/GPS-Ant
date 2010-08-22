@@ -24,6 +24,8 @@ public class GPSStatus implements GpsStatus.Listener {
 			break;
 		case GpsStatus.GPS_EVENT_STOPPED:
 			myGpsDisplay.setActive("Stopped");
+			myGpsDisplay.setSatsSeenDefault();
+			myGpsDisplay.setSatsLockedDefault();
 			break;
 		case GpsStatus.GPS_EVENT_FIRST_FIX:
 			myGpsDisplay.setActive("First fix");

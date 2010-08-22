@@ -25,7 +25,14 @@ public class GPSDisplay extends Activity implements LocationListener {
 	public void setSatsSeen(String s) {
 		((TextView) findViewById(R.id.ValueSatsSeen)).setText(s);
 	}
-	
+	public void setSatsSeenDefault() {
+		((TextView) findViewById(R.id.ValueSatsSeen)).setText(getString(R.string.DefaultSatsSeen));
+	}
+
+	public void setSatsLockedDefault() {
+		((TextView) findViewById(R.id.ValueSatsLocked)).setText(getString(R.string.DefaultSatsLocked));
+	}
+
 	public void setSatsLocked(String s) {
 		((TextView) findViewById(R.id.ValueSatsLocked)).setText(s);
 	}
@@ -117,23 +124,16 @@ public class GPSDisplay extends Activity implements LocationListener {
     		case LocationProvider.OUT_OF_SERVICE:
     			GPSActive = false;
     			((TextView) findViewById(R.id.ValueActive)).setText("Out of Service");
-    			//((TextView) findViewById(R.id.ValueSatsSeen)).setText(getString(R.string.DefaultSatsSeen));
-    			//((TextView) findViewById(R.id.ValueSatsLocked)).setText(getString(R.string.DefaultSatsLocked));
-    			break;
+   			break;
     		case LocationProvider.TEMPORARILY_UNAVAILABLE:
     			GPSActive = false;
     			((TextView) findViewById(R.id.ValueActive)).setText("Temp. Unavail");
-    			//((TextView) findViewById(R.id.ValueSatsSeen)).setText("temp");
-    			//((TextView) findViewById(R.id.ValueSatsLocked)).setText("temp");
+    			setSatsSeenDefault();
+    			setSatsLockedDefault();
     			break;
     		case LocationProvider.AVAILABLE:
     			GPSActive = true;
     			((TextView) findViewById(R.id.ValueActive)).setText("Available");
-    			if (extras != null) {
-    				if (extras.containsKey("satellites")) {
-    					//((TextView) findViewById(R.id.ValueSatsLocked)).setText(extras.get("satellites").toString());
-    				}
-    			}
     			break;
     		}
     	}
