@@ -4,7 +4,11 @@
     android:versionName="@string/Version" android:versionCode="3">
    	<uses-sdk android:targetSdkVersion="7" android:minSdkVersion="7"></uses-sdk>
     <application android:icon="@drawable/icon" android:label="@string/app_name" android:allowBackup="false">
-        <activity android:label="@string/app_name" android:name=".GPSDisplay" android:launchMode="singleTask">
+        <activity
+        	android:label="@string/app_name"
+        	android:name=".GPSDisplay"
+        	android:launchMode="singleTask"
+        	android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
