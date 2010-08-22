@@ -5,7 +5,7 @@
     <string name="gps_status">GPS Ant - Status</string>
 <string name="LabelAllowed">Allowed:</string>
 <string name="ValueAllowed">@string/DefaultAllowed</string>
-<string name="LabelActive">Active:</string>
+<string name="LabelActive">Fix Status:</string>
 <string name="ValueActive">@string/DefaultActive</string>
 <string name="LabelSatsSeen">Satellites Seen:</string>
 <string name="ValueSatsSeen">@string/DefaultSatsSeen</string>
@@ -50,4 +50,14 @@
 <string name="GPSAllowedDisabled">Disabled</string>
 <string name="HeaderFix">Fix</string>
 <string name="HeaderInfo">Info</string>
+<string name="Available">Available</string>
+<string name="OutOfService">Out of Service</string>
+<string name="TempUnavail">Temporarily Unavailable</string>
+<string name="LabelLastInfo">Last Info.:</string>
+<string name="DefaultLastInfo">--:--:--</string>
+<string name="ValueLastInfo">@string/DefaultLastInfo</string>
+<string name="Started">Started</string>
+<string name="Stopped">Stopped</string>
+<string name="FirstFix">First Fix</string>
+<string name="GotFix">Got Fix</string>
 </resources>
