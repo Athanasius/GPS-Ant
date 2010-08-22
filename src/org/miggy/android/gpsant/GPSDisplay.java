@@ -19,11 +19,18 @@ import java.text.DateFormat;
 import org.miggy.android.gpsant.GPSStatus;
 
 public class GPSDisplay extends Activity implements LocationListener {
+//////////////////////////////////////////////////////////////////////////////////////////
+// Class globals
+//////////////////////////////////////////////////////////////////////////////////////////
 	boolean GPSAllowed = false;
 	boolean GPSActive = false;
 	GPSStatus gpsStatus = new GPSStatus(this);
 	LocationManager locationManager = null;
+//////////////////////////////////////////////////////////////////////////////////////////
 	
+//////////////////////////////////////////////////////////////////////////////////////////
+// Access methods for other classes to read/set data
+//////////////////////////////////////////////////////////////////////////////////////////
 	public void setSatsSeen(String s) {
 		((TextView) findViewById(R.id.ValueSatsSeen)).setText(s);
 	}
@@ -42,53 +49,86 @@ public class GPSDisplay extends Activity implements LocationListener {
 	public void setActive(String s) {
 		((TextView) findViewById(R.id.ValueActive)).setText(s);
 	}
+//////////////////////////////////////////////////////////////////////////////////////////
 
+//////////////////////////////////////////////////////////////////////////////////////////
+// Startup code
+//////////////////////////////////////////////////////////////////////////////////////////
 	/** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
-    	
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        
+		locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
     }
+//////////////////////////////////////////////////////////////////////////////////////////
        
+//////////////////////////////////////////////////////////////////////////////////////////
+// Pause/Resume/Stop/Start code
+//////////////////////////////////////////////////////////////////////////////////////////
     @Override
     protected void onResume() {
-    	
      	super.onResume();
    
-		// Get LocationManager to check GPS availability
-		locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+     	startGPS();
+    }
+
+    @Override
+	protected void onStart() {
+		super.onStart();
+		
+		startGPS();
+	}
+    
+    @Override
+    protected void onPause() {
+    	super.onPause();
+    	
+    	stopGPS();
+    }
+
+    @Override
+    protected void onStop() {
+    	super.onStop();
+    	
+    	stopGPS();
+    }
+    
+    void startGPS() {
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000L, 1.0f, this);
 		GPSAllowed = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
 		if (GPSAllowed) {
-			((TextView) findViewById(R.id.ValueAllowed)).setText("Y");
+			((TextView) findViewById(R.id.ValueAllowed)).setText(getString(R.string.GPSAllowedEnabled));
 		} else {
-			((TextView) findViewById(R.id.ValueAllowed)).setText("N");
+			((TextView) findViewById(R.id.ValueAllowed)).setText(getString(R.string.GPSAllowedDisabled));
 		}
 				
 		// Hook in our GpsStatus.Listener
 		locationManager.addGpsStatusListener(gpsStatus);
-
     }
-            
+    
+    void stopGPS() {
+    	locationManager.removeGpsStatusListener(gpsStatus);
+    	locationManager.removeUpdates(this);
+    }
+//////////////////////////////////////////////////////////////////////////////////////////
+    
+//////////////////////////////////////////////////////////////////////////////////////////
+// Status change/update code
+//////////////////////////////////////////////////////////////////////////////////////////
     public void onProviderEnabled(String provider) {
-    	
     	if (provider.equals(LocationManager.GPS_PROVIDER)) {
     		GPSAllowed = true;
     	}
-    	
     }
     
     public void onProviderDisabled(String provider) {
-
     	if (provider.equals(LocationManager.GPS_PROVIDER)) {
     		GPSAllowed = false;
     	}
     }
     
     public void onLocationChanged(Location location) {
-    	
        	((TextView) findViewById(R.id.ValueProvider)).setText(location.getProvider());
     	((TextView) findViewById(R.id.ValueLatitude)).setText(Location.convert(location.getLatitude(), Location.FORMAT_DEGREES));
     	((TextView) findViewById(R.id.ValueLongitude)).setText(Location.convert(location.getLongitude(), Location.FORMAT_DEGREES));
@@ -115,17 +155,15 @@ public class GPSDisplay extends Activity implements LocationListener {
     	Date now = Calendar.getInstance().getTime();
     	DateFormat df = DateFormat.getTimeInstance();
     	((TextView) findViewById(R.id.ValueTimestamp)).setText(df.format(now));
-    	
     }
     
     public void onStatusChanged(String provider, int status, Bundle extras) {
-    	
     	if (provider.equals(LocationManager.GPS_PROVIDER)) {
     		switch (status) {
     		case LocationProvider.OUT_OF_SERVICE:
     			GPSActive = false;
     			((TextView) findViewById(R.id.ValueActive)).setText("Out of Service");
-   			break;
+    			break;
     		case LocationProvider.TEMPORARILY_UNAVAILABLE:
     			GPSActive = false;
     			((TextView) findViewById(R.id.ValueActive)).setText("Temp. Unavail");
@@ -138,23 +176,23 @@ public class GPSDisplay extends Activity implements LocationListener {
     			break;
     		}
     	}
-    	
     }
+//////////////////////////////////////////////////////////////////////////////////////////
+
     
+//////////////////////////////////////////////////////////////////////////////////////////
+// Menu code
+//////////////////////////////////////////////////////////////////////////////////////////
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
     	MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_menu, menu);
     	
     	return super.onCreateOptionsMenu(menu);
-    	
     }
     
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-    	// TODO Auto-generated method stub
-    	
     	switch (item.getItemId()) {
     	case R.id.About:
     		View aboutView = getLayoutInflater().inflate(R.layout.about, null, false);
@@ -172,4 +210,5 @@ public class GPSDisplay extends Activity implements LocationListener {
     	
     	return super.onOptionsItemSelected(item);
     }
+//////////////////////////////////////////////////////////////////////////////////////////
 }
