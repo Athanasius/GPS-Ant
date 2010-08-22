@@ -39,4 +39,5 @@
 <string name="LabelTimestamp">Time:</string>
 <string name="ValueTimestamp">--:--:--</string>
 <string name="DefaultTimestamp">--:--:--</string>
+<string name="Version">v0.0.3</string>
 </resources>
