@@ -7,8 +7,8 @@ import org.miggy.android.gpsant.GPSDisplay;
 
 
 public class GPSStatus implements GpsStatus.Listener {
-	GPSDisplay myGpsDisplay;
-	GpsStatus myGpsStatus;
+	GPSDisplay myGpsDisplay = null;
+	GpsStatus myGpsStatus = null;
 	
 	public GPSStatus() {
 		// TODO Auto-generated constructor stub

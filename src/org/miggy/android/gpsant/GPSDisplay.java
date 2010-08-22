@@ -20,7 +20,7 @@ public class GPSDisplay extends Activity implements LocationListener {
 	boolean GPSAllowed = false;
 	boolean GPSActive = false;
 	GPSStatus gpsStatus = new GPSStatus(this);
-	LocationManager locationManager;
+	LocationManager locationManager = null;
 	
 	public void setSatsSeen(String s) {
 		((TextView) findViewById(R.id.ValueSatsSeen)).setText(s);
@@ -49,8 +49,7 @@ public class GPSDisplay extends Activity implements LocationListener {
         setContentView(R.layout.main);
         
     }
-    
-    
+       
     @Override
     protected void onResume() {
     	
