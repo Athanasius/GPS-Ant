@@ -11,24 +11,24 @@ public class GPSStatus implements GpsStatus.Listener {
 	GpsStatus myGpsStatus = null;
 	
 	public GPSStatus() {
-		// TODO Auto-generated constructor stub
 	} GPSStatus(GPSDisplay gpsDisplay) {
 		myGpsDisplay = gpsDisplay;
 	}
 	
 	public void onGpsStatusChanged(int event) {
-		// TODO Auto-generated method stub
 		switch (event) {
 		case GpsStatus.GPS_EVENT_STARTED:
-			myGpsDisplay.setActive("Started");
+			// Seems to be called when the GPS system wakes up from sleep (due to large minTime passed to requestLocationUpdates())
+			myGpsDisplay.setActive(myGpsDisplay.getString(R.string.Started));
 			break;
 		case GpsStatus.GPS_EVENT_STOPPED:
-			myGpsDisplay.setActive("Stopped");
+			// Seems to be called when the GPS system sleeps (due to large minTime passed to requestLocationUpdates())
+			myGpsDisplay.setActive(myGpsDisplay.getString(R.string.Stopped));
 			myGpsDisplay.setSatsSeenDefault();
 			myGpsDisplay.setSatsLockedDefault();
 			break;
 		case GpsStatus.GPS_EVENT_FIRST_FIX:
-			myGpsDisplay.setActive("First fix");
+			myGpsDisplay.setActive(myGpsDisplay.getString(R.string.FirstFix));
 			break;
 		case GpsStatus.GPS_EVENT_SATELLITE_STATUS:
 			myGpsStatus = myGpsDisplay.locationManager.getGpsStatus(myGpsStatus);
