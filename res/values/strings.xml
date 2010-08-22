@@ -42,5 +42,8 @@
 <string name="Version">v0.0.3</string>
 <string name="MenuMainAbout">About</string>
 <string name="MenuMainExit">Exit</string>
-<string name="AboutText">This is currently a simple GPS Status application.  The intention is to eventually expand it to track movement and save points for display on Maps or to export to a file.\r\n\r\nAuthor: Athanasius &lt;android-apps@miggy.org&gt;\r\nHomepage: http://www.miggy.org/android/GPS-Ant/\r\n\r\nVersion:</string>
+<string name="AboutText01">This is currently a simple GPS Status application.  The intention is to eventually expand it to track movement and save points for display on Maps or to export to a file.\n</string>
+<string name="AboutText02">Author: Athanasius &lt;android-apps@miggy.org&gt;\nHomepage: http://www.miggy.org/android/GPS-Ant/\n</string>
+<string name="AboutText03">Version:</string>
+<string name="AboutTitle">About</string>
 </resources>
