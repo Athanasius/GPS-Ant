@@ -61,4 +61,11 @@
 <string name="FirstFix">First Fix</string>
 <string name="GotFix">Got Fix</string>
 <string name="OldFix">Old Fix</string>
+<string name="SatsHeaderID">Id</string>
+<string name="SatsHeaderAzimuth">Azimuth</string>
+<string name="SatsHeaderElevation">Elevation</string>
+<string name="SatsHeaderSNR">SNR</string>
+<string name="SatsHeaderAlmanac">Almanac</string>
+<string name="SatsHeaderEphemeris">Ephemeris</string>
+<string name="SatsRowTextSize">12dip</string>
 </resources>

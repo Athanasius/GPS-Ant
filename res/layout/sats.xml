@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/SatsView"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content">
+
+	<TableLayout android:id="@+id/SatsLayout"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:orientation="vertical" android:shrinkColumns="1,2,3,4,5" android:stretchColumns="0,1,2,3,4,5">
+
+		<TableRow android:id="@+id/SatsRowHeader">
+
+			<TextView android:id="@+id/SatsHeaderID"
+				android:text="@string/SatsHeaderID"
+				android:layout_column="0"
+				android:textSize="@string/SatsRowTextSize"
+				android:gravity="left">
+			</TextView>
+
+			<TextView android:id="@+id/SatsHeaderAzimuth"
+				android:text="@string/SatsHeaderAzimuth"
+				android:layout_column="1"
+				android:textSize="@string/SatsRowTextSize"
+				android:gravity="right">
+			</TextView>
+
+			<TextView android:id="@+id/SatsHeaderElevation"
+				android:text="@string/SatsHeaderElevation"
+				android:layout_column="2"
+				android:textSize="@string/SatsRowTextSize"
+				android:gravity="right">
+			</TextView>
+
+			<TextView android:id="@+id/SatsHeaderSNR"
+				android:text="@string/SatsHeaderSNR"
+				android:layout_column="3"
+				android:textSize="@string/SatsRowTextSize"
+				android:gravity="center_horizontal">
+			</TextView>
+
+			<TextView android:id="@+id/SatsHeaderAlmanac"
+				android:text="@string/SatsHeaderAlmanac"
+				android:layout_column="4"
+				android:textSize="@string/SatsRowTextSize"
+				android:gravity="center_horizontal">
+			</TextView>
+
+			<TextView android:id="@+id/SatsHeaderEphemeris"
+				android:text="@string/SatsHeaderEphemeris"
+				android:layout_column="5"
+				android:textSize="@string/SatsRowTextSize"
+				android:gravity="center_horizontal">
+			</TextView>
+
+		</TableRow>
+		
+		<TableRow android:id="@+id/SatsRowExample">
+			<TextView android:id="@+id/SatsHeaderID"
+				android:text="32"
+				android:layout_column="0"
+				android:textSize="@string/SatsRowTextSize"
+				android:gravity="left">
+			</TextView>
+
+			<TextView android:id="@+id/SatsExampleAzimuth"
+				android:text="-120.3353"
+				android:layout_column="1"
+				android:textSize="@string/SatsRowTextSize"
+				android:gravity="right">
+			</TextView>
+
+			<TextView android:id="@+id/SatsExampleElevation"
+				android:text="-89.3298"
+				android:layout_column="2"
+				android:textSize="@string/SatsRowTextSize"
+				android:gravity="right">
+			</TextView>
+
+			<TextView android:id="@+id/SatsExampleSNR"
+				android:text="124dB"
+				android:layout_column="3"
+				android:textSize="@string/SatsRowTextSize"
+				android:gravity="center_horizontal">
+			</TextView>
+
+			<TextView android:id="@+id/SatsExampleAlmanac"
+				android:text="Y"
+				android:layout_column="4"
+				android:textSize="@string/SatsRowTextSize"
+				android:gravity="center_horizontal">
+			</TextView>
+
+			<TextView android:id="@+id/SatsExampleEphemeris"
+				android:text="Y"
+				android:layout_column="5"
+				android:textSize="@string/SatsRowTextSize"
+				android:gravity="center_horizontal">
+			</TextView>
+		
+
+		</TableRow>
+		
+	</TableLayout>
+
+</ScrollView>
