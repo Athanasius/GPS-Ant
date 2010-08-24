@@ -1,33 +1,42 @@
+//////////////////////////////////////////////////////////////////////////////////////////
+// Class:GPSDisplay
+//
+// Implements an Activity that displays to the user a GPS fix and miscellaneous
+// information about it.
+//
+// Uses the Service GPSReader to actually get GPS info.
+//////////////////////////////////////////////////////////////////////////////////////////
+
 package org.miggy.android.gpsant;
 
+import android.os.Bundle;
+import android.os.IBinder;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.os.Bundle;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
+import android.location.Location;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.location.LocationProvider;
+import android.widget.Toast;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.text.DateFormat;
 
-import org.miggy.android.gpsant.GPSStatus;
+import org.miggy.android.gpsant.GPSReader;
 
-public class GPSDisplay extends Activity implements LocationListener {
+public class GPSDisplay extends Activity {
 //////////////////////////////////////////////////////////////////////////////////////////
 // Class globals
 //////////////////////////////////////////////////////////////////////////////////////////
-	boolean GPSAllowed = false;
-	boolean GPSActive = false;
-	GPSStatus gpsStatus = new GPSStatus(this);
-	LocationManager locationManager = null;
-	long defaultMinTime = 1000L;
-	float defaultMinDistance = 1.0f;
+	private GPSReader myGPSReader;
+    private boolean GPSReaderIsBound = false;
 //////////////////////////////////////////////////////////////////////////////////////////
 	
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -56,6 +65,12 @@ public class GPSDisplay extends Activity implements LocationListener {
 		((TextView) findViewById(R.id.ValueActive)).setText(s);
 		updateLastInfo();
 	}
+
+	public void setAllowed(String s) {
+		((TextView) findViewById(R.id.ValueAllowed)).setText(s);
+		updateLastInfo();
+	}
+
 //////////////////////////////////////////////////////////////////////////////////////////
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -66,7 +81,37 @@ public class GPSDisplay extends Activity implements LocationListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-		locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        GPSReaderIsBound = bindService(new Intent(GPSDisplay.this, GPSReader.class), GPSReaderConnection, Context.BIND_AUTO_CREATE);
+    }
+
+    private ServiceConnection GPSReaderConnection = new ServiceConnection() {
+        public void onServiceConnected(ComponentName className, IBinder service) {
+        	myGPSReader = ((GPSReader.LocalBinder)service).getService(GPSDisplay.this);
+        	
+        	Toast.makeText(GPSDisplay.this, R.string.GPSReader_service_connected,
+                    Toast.LENGTH_SHORT).show();
+        }
+        
+        public void onServiceDisconnected(ComponentName className) {
+        	myGPSReader = null;
+        	
+        	Toast.makeText(GPSDisplay.this, R.string.GPSReader_service_disconnected,
+                    Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    void doUnbindService() {
+        if (GPSReaderIsBound) {
+            // Detach our existing connection.
+            //unbindService(GPSReaderConnection);
+            GPSReaderIsBound = false;
+        }
+    }
+    
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        doUnbindService();
     }
 //////////////////////////////////////////////////////////////////////////////////////////
        
@@ -77,77 +122,38 @@ public class GPSDisplay extends Activity implements LocationListener {
     protected void onResume() {
      	super.onResume();
    
-     	startGPS(defaultMinTime, defaultMinDistance);
+     	// need to ask GPSReader to start it now...
+     	//myGPSReader.startGPS();
     }
 
     @Override
 	protected void onStart() {
 		super.onStart();
 		
-		startGPS(defaultMinTime, defaultMinDistance);
+		//myGPSReader.startGPS();
 	}
     
     @Override
     protected void onPause() {
     	super.onPause();
     	
-    	stopGPS();
+    	//myGPSReader.stopGPS();
     }
 
     @Override
     protected void onStop() {
     	super.onStop();
     	
-    	stopGPS();
+    	//myGPSReader.stopGPS();
     }
-    
-    void startGPS(long minTime, float minDistance) {
-		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, minTime, minDistance, this);
-		GPSAllowed = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-		if (GPSAllowed) {
-			((TextView) findViewById(R.id.ValueAllowed)).setText(getString(R.string.GPSAllowedEnabled));
-		} else {
-			((TextView) findViewById(R.id.ValueAllowed)).setText(getString(R.string.GPSAllowedDisabled));
-		}
-		// See if there's a stored last position
-		Location last = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-		if (last != null) {
-			updateLocation(last, getString(R.string.OldFix));
-		}
-		updateLastInfo();
-				
-		// Hook in our GpsStatus.Listener
-		locationManager.addGpsStatusListener(gpsStatus);
-    }
-    
-    void stopGPS() {
-    	locationManager.removeGpsStatusListener(gpsStatus);
-    	locationManager.removeUpdates(this);
-    	updateLastInfo();
-    }
-//////////////////////////////////////////////////////////////////////////////////////////
     
 //////////////////////////////////////////////////////////////////////////////////////////
-// Status change/update code
+
 //////////////////////////////////////////////////////////////////////////////////////////
-    public void onProviderEnabled(String provider) {
-    	if (provider.equals(LocationManager.GPS_PROVIDER)) {
-    		GPSAllowed = true;
-    	}
-    }
-    
-    public void onProviderDisabled(String provider) {
-    	if (provider.equals(LocationManager.GPS_PROVIDER)) {
-    		GPSAllowed = false;
-    	}
-    }
-    
-    public void onLocationChanged(Location location) {
-    	updateLocation(location, getString(R.string.GotFix));
-    }
-    
-    private void updateLocation(Location location, String status) {
-       	((TextView) findViewById(R.id.ValueProvider)).setText(location.getProvider());
+// Location updates
+//////////////////////////////////////////////////////////////////////////////////////////
+    public void updateLocation(Location location, String status) {
+    	((TextView) findViewById(R.id.ValueProvider)).setText(location.getProvider());
     	((TextView) findViewById(R.id.ValueLatitude)).setText(Location.convert(location.getLatitude(), Location.FORMAT_DEGREES));
     	((TextView) findViewById(R.id.ValueLongitude)).setText(Location.convert(location.getLongitude(), Location.FORMAT_DEGREES));
     	if (location.hasAltitude()) {
@@ -175,32 +181,8 @@ public class GPSDisplay extends Activity implements LocationListener {
     	((TextView) findViewById(R.id.ValueTimestamp)).setText(df.format(now));
     	((TextView) findViewById(R.id.ValueActive)).setText(status);
     }
-        
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-    	if (provider.equals(LocationManager.GPS_PROVIDER)) {
-    		switch (status) {
-    		case LocationProvider.OUT_OF_SERVICE:
-    			GPSActive = false;
-    			((TextView) findViewById(R.id.ValueActive)).setText(getString(R.string.OutOfService));
-    			updateLastInfo();
-    			break;
-    		case LocationProvider.TEMPORARILY_UNAVAILABLE:
-    			GPSActive = false;
-    			((TextView) findViewById(R.id.ValueActive)).setText(getString(R.string.TempUnavail));
-    			setSatsSeenDefault();
-    			setSatsLockedDefault();
-    			updateLastInfo();
-    			break;
-    		case LocationProvider.AVAILABLE:
-    			GPSActive = true;
-    			((TextView) findViewById(R.id.ValueActive)).setText(getString(R.string.Available));
-    			updateLastInfo();
-    			break;
-    		}
-    	}
-    }
     
-    private void updateLastInfo() {
+    public void updateLastInfo() {
     	Date now = Calendar.getInstance().getTime();
     	DateFormat df = DateFormat.getTimeInstance();
     	((TextView) findViewById(R.id.ValueLastInfo)).setText(df.format(now));
@@ -230,6 +212,9 @@ public class GPSDisplay extends Activity implements LocationListener {
     		builder.setView(aboutView);
     		builder.create();
     		builder.show();
+    		break;
+    	case R.id.Satellites:
+    		setContentView(R.layout.sats);
     		break;
     	case R.id.Exit:
     		finish();

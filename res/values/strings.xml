@@ -68,4 +68,11 @@
 <string name="SatsHeaderAlmanac">Almanac</string>
 <string name="SatsHeaderEphemeris">Ephemeris</string>
 <string name="SatsRowTextSize">12dip</string>
+<string name="MenuMainSatellites">Satellites</string>
+<string name="LabelGPSReader">GPS Reader</string>
+<string name="GPSReader_stopped">GPS Reader Service stopped</string>
+<string name="GPSReader_started">GPS Reader Service started</string>
+<string name="GPSReader_service_label">GPS Reader</string>
+<string name="GPSReader_service_connected">GPS Reader service connected</string>
+<string name="GPSReader_service_disconnected">GPS Reader service disconnected</string>
 </resources>

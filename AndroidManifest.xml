@@ -4,17 +4,23 @@
     android:versionName="@string/Version" android:versionCode="4">
    	<uses-sdk android:targetSdkVersion="7" android:minSdkVersion="7"></uses-sdk>
     <application android:icon="@drawable/icon" android:label="@string/app_name" android:allowBackup="false">
-        <activity
+        <activity android:name=".GPSDisplay"        
         	android:label="@string/app_name"
-        	android:name=".GPSDisplay"
         	android:launchMode="singleTask"
         	android:screenOrientation="portrait">
+        	
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            
         </activity>
-   	</application>
+        
+   		<service android:name=".GPSReader"
+   			android:label="@string/LabelGPSReader">
+   		</service>
+
+	</application>
     
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
 
