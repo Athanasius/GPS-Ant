@@ -35,6 +35,7 @@ public class GPSDisplay extends Activity {
 //////////////////////////////////////////////////////////////////////////////////////////
 // Class globals
 //////////////////////////////////////////////////////////////////////////////////////////
+	@SuppressWarnings("unused")
 	private GPSReader myGPSReader;
     private boolean GPSReaderIsBound = false;
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -103,7 +104,7 @@ public class GPSDisplay extends Activity {
     void doUnbindService() {
         if (GPSReaderIsBound) {
             // Detach our existing connection.
-            //unbindService(GPSReaderConnection);
+            unbindService(GPSReaderConnection);
             GPSReaderIsBound = false;
         }
     }
@@ -214,7 +215,10 @@ public class GPSDisplay extends Activity {
     		builder.show();
     		break;
     	case R.id.Satellites:
-    		setContentView(R.layout.sats);
+//    		Intent satsIntent = new Intent("org.miggy.android.gpsant.sats");
+//    		satsIntent.addCategory("org.miggy.android.gpsant.subview");
+    		Intent satsIntent = new Intent(getApplicationContext(), GPSSats.class);
+    		startActivity(satsIntent);
     		break;
     	case R.id.Exit:
     		finish();

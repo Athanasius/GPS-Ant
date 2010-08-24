@@ -115,6 +115,10 @@ public class GPSReader extends Service implements LocationListener {
     		
             return GPSReader.this;
         }
+        
+        GPSReader getService(GPSSats GpsSats) {
+        	return GPSReader.this;
+        }
     }
     
     private NotificationManager mNM;

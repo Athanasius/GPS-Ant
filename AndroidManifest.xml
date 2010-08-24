@@ -19,6 +19,18 @@
    		<service android:name=".GPSReader"
    			android:label="@string/LabelGPSReader">
    		</service>
+   		
+        <activity android:name=".GPSSats"        
+        	android:label="@string/LabelGPSSats"
+        	android:launchMode="singleTop"
+        	android:screenOrientation="portrait">
+        	
+            <intent-filter>
+                <action android:name="org.miggy.android.gpsant.sats" />
+                <category android:name="org.miggy.android.gpsant.subview" />
+            </intent-filter>
+        
+        </activity>
 
 	</application>
     

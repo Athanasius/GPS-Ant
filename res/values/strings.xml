@@ -75,4 +75,5 @@
 <string name="GPSReader_service_label">GPS Reader</string>
 <string name="GPSReader_service_connected">GPS Reader service connected</string>
 <string name="GPSReader_service_disconnected">GPS Reader service disconnected</string>
+<string name="LabelGPSSats">GPS Ant - Satellites</string>
 </resources>
