@@ -39,7 +39,7 @@
 <string name="LabelTimestamp">Time of last fix:</string>
 <string name="ValueTimestamp">@string/DefaultTimestamp</string>
 <string name="DefaultTimestamp">--:--:--</string>
-<string name="Version">v0.1.0</string>
+<string name="Version">v0.2.0</string>
 <string name="MenuMainAbout">About</string>
 <string name="MenuMainExit">Exit</string>
 <string name="AboutText01">This is currently a simple GPS Status application.  The intention is to eventually expand it to track movement and save points for display on Maps or to export to a file.\n</string>
@@ -76,4 +76,6 @@
 <string name="GPSReader_service_connected">GPS Reader service connected</string>
 <string name="GPSReader_service_disconnected">GPS Reader service disconnected</string>
 <string name="LabelGPSSats">GPS Ant - Satellites</string>
+<color name="ColorSatUsed">#333333</color>
+<color name="ColorSatUnused">#000000</color>
 </resources>

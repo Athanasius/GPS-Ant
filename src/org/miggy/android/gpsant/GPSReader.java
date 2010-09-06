@@ -36,6 +36,7 @@ public class GPSReader extends Service implements LocationListener {
 	boolean GPSActive = false;
 	GPSStatus myGPSStatus = new GPSStatus(this);
 	GPSDisplay myGPSDisplay = null;
+	GPSSatsView myGPSSatsView = null;
 	LocationManager locationManager = null;
 	long defaultMinTime = 1000L;
 	float defaultMinDistance = 1.0f;
@@ -129,6 +130,7 @@ public class GPSReader extends Service implements LocationListener {
         }
         
         GPSReader getService(GPSSatsView GpsSatsView) {
+        	myGPSSatsView = GpsSatsView;
         	return GPSReader.this;
         }
     }
@@ -242,6 +244,12 @@ public class GPSReader extends Service implements LocationListener {
     			}
     			break;
     		}
+    	}
+    }
+    
+    public void SatData(int prn, float azimuth, float elevation, float snr, boolean almanac, boolean ephemeris, boolean used) {
+    	if (myGPSSatsView != null) {
+    		myGPSSatsView.SatData(prn, azimuth, elevation, snr, almanac, ephemeris, used);
     	}
     }
 
