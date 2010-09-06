@@ -45,23 +45,33 @@ public class GPSReader extends Service implements LocationListener {
 // Access methods for other classes to read/set data
 //////////////////////////////////////////////////////////////////////////////////////////
 	public void setActive(String s) {
-		myGPSDisplay.setActive(s);
+		if (myGPSDisplay != null) {
+			myGPSDisplay.setActive(s);
+		}
 	}
 		
 	public void setSatsSeenDefault() {
-		myGPSDisplay.setSatsSeenDefault();
+		if (myGPSDisplay != null) {
+			myGPSDisplay.setSatsSeenDefault();
+		}
 	}
 		
 	public void setSatsLockedDefault() {
-		myGPSDisplay.setSatsLockedDefault();
+		if (myGPSDisplay != null) {
+			myGPSDisplay.setSatsLockedDefault();
+		}
 	}
 		
 	public void setSatsSeen(String s) {
-		myGPSDisplay.setSatsSeen(s);
+		if (myGPSDisplay != null) {
+			myGPSDisplay.setSatsSeen(s);
+		}
 	}
 		
 	public void setSatsLocked(String s) {
-		myGPSDisplay.setSatsLocked(s);
+		if (myGPSDisplay != null) {
+			myGPSDisplay.setSatsLocked(s);
+		}
 	}
 	
 	public void startGPS() {
@@ -85,7 +95,9 @@ public class GPSReader extends Service implements LocationListener {
     void stopGPS() {
     	locationManager.removeGpsStatusListener(myGPSStatus);
     	locationManager.removeUpdates(this);
-    	myGPSDisplay.updateLastInfo();
+		if (myGPSDisplay != null) {
+			myGPSDisplay.updateLastInfo();
+		}
     }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -142,6 +154,7 @@ public class GPSReader extends Service implements LocationListener {
     public void onDestroy() {
     	stopGPS();
     	myGPSDisplay = null;
+    	myGPSStatus = null;
     	// Cancel the persistent notification.
     	mNM.cancel(R.string.GPSReader_started);
 

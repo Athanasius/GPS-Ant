@@ -5,6 +5,8 @@ import android.os.IBinder;
 import android.widget.Toast;
 import android.app.Activity;
 import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
 import android.content.ServiceConnection;
 
 import org.miggy.android.gpsant.GPSReader;
@@ -26,7 +28,7 @@ public class GPSSats extends Activity {
     public void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
         setContentView(R.layout.sats);
-        //GPSReaderIsBound = bindService(new Intent(GPSSats.this, GPSReader.class), GPSReaderConnection, Context.BIND_AUTO_CREATE);
+        GPSReaderIsBound = bindService(new Intent(GPSSats.this, GPSReader.class), GPSReaderConnection, Context.BIND_AUTO_CREATE);
     }
 
     private ServiceConnection GPSReaderConnection = new ServiceConnection() {

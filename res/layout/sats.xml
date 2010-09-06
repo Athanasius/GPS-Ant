@@ -55,7 +55,7 @@
 
 		</TableRow>
 		
-		<TableRow android:id="@+id/SatsRowExample">
+		<TableRow android:id="@+id/SatsRowExample" android:visibility="invisible">
 			<TextView android:id="@+id/SatsHeaderID"
 				android:text="32"
 				android:layout_column="0"
