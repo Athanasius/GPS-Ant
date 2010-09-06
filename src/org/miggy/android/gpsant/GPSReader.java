@@ -128,7 +128,7 @@ public class GPSReader extends Service implements LocationListener {
             return GPSReader.this;
         }
         
-        GPSReader getService(GPSSats GpsSats) {
+        GPSReader getService(GPSSatsView GpsSatsView) {
         	return GPSReader.this;
         }
     }

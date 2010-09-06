@@ -56,11 +56,10 @@
 		</TableRow>
 		
 		<TableRow android:id="@+id/SatsRowExample" android:visibility="invisible">
-			<TextView android:id="@+id/SatsHeaderID"
-				android:text="32"
+			<TextView android:text="32"
 				android:layout_column="0"
 				android:textSize="12dip"
-				android:gravity="left">
+				android:gravity="left" android:id="@+id/SatsExampleID">
 			</TextView>
 
 			<TextView android:id="@+id/SatsExampleAzimuth"

@@ -20,7 +20,7 @@
    			android:label="@string/LabelGPSReader">
    		</service>
    		
-        <activity android:name=".GPSSats"        
+        <activity android:name=".GPSSatsView"        
         	android:label="@string/LabelGPSSats"
         	android:launchMode="singleTop"
         	android:screenOrientation="portrait">

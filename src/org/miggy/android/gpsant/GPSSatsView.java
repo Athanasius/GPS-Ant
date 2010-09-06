@@ -11,13 +11,14 @@ import android.content.ServiceConnection;
 
 import org.miggy.android.gpsant.GPSReader;
 
-public class GPSSats extends Activity {
+public class GPSSatsView extends Activity {
 //////////////////////////////////////////////////////////////////////////////////////////
 // Class globals
 //////////////////////////////////////////////////////////////////////////////////////////
 	@SuppressWarnings("unused")
 	private GPSReader myGPSReader;
     private boolean GPSReaderIsBound = false;
+    
 //////////////////////////////////////////////////////////////////////////////////////////
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -28,21 +29,21 @@ public class GPSSats extends Activity {
     public void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
         setContentView(R.layout.sats);
-        GPSReaderIsBound = bindService(new Intent(GPSSats.this, GPSReader.class), GPSReaderConnection, Context.BIND_AUTO_CREATE);
+        GPSReaderIsBound = bindService(new Intent(GPSSatsView.this, GPSReader.class), GPSReaderConnection, Context.BIND_AUTO_CREATE);
     }
 
     private ServiceConnection GPSReaderConnection = new ServiceConnection() {
     	public void onServiceConnected(ComponentName className, IBinder service) {
-        	myGPSReader = ((GPSReader.LocalBinder)service).getService(GPSSats.this);
+        	myGPSReader = ((GPSReader.LocalBinder)service).getService(GPSSatsView.this);
          	
-         	Toast.makeText(GPSSats.this, R.string.GPSReader_service_connected,
+         	Toast.makeText(GPSSatsView.this, R.string.GPSReader_service_connected,
                      Toast.LENGTH_SHORT).show();
         }
          
         public void onServiceDisconnected(ComponentName className) {
          	myGPSReader = null;
          	
-         	Toast.makeText(GPSSats.this, R.string.GPSReader_service_disconnected,
+         	Toast.makeText(GPSSatsView.this, R.string.GPSReader_service_disconnected,
                      Toast.LENGTH_SHORT).show();
         }
     };

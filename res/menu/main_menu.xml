@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu
   xmlns:android="http://schemas.android.com/apk/res/android">
-<item android:orderInCategory="1" android:title="@string/MenuMainAbout" android:id="@+id/About" android:icon="@android:drawable/ic_menu_info_details"></item>
-<item android:id="@+id/Satellites" android:orderInCategory="2" android:title="@string/MenuMainSatellites"></item><item android:title="@string/MenuMainExit" android:id="@+id/Exit" android:icon="@android:drawable/ic_menu_close_clear_cancel" android:orderInCategory="3"></item>
-
+	<item android:orderInCategory="1" android:title="@string/MenuMainAbout" android:id="@+id/About" android:icon="@android:drawable/ic_menu_info_details"></item>
+	<item android:id="@+id/Satellites" android:orderInCategory="2" android:title="@string/MenuMainSatellites"></item>
+	<item android:title="@string/MenuMainExit" android:id="@+id/Exit" android:icon="@android:drawable/ic_menu_close_clear_cancel" android:orderInCategory="3"></item>
 </menu>

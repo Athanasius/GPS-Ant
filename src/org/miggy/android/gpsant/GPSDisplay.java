@@ -217,7 +217,7 @@ public class GPSDisplay extends Activity {
     	case R.id.Satellites:
 //    		Intent satsIntent = new Intent("org.miggy.android.gpsant.sats");
 //    		satsIntent.addCategory("org.miggy.android.gpsant.subview");
-    		Intent satsIntent = new Intent(getApplicationContext(), GPSSats.class);
+    		Intent satsIntent = new Intent(getApplicationContext(), GPSSatsView.class);
     		startActivity(satsIntent);
     		break;
     	case R.id.Exit:
